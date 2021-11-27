@@ -10,7 +10,7 @@ import cv2
 import os
 from videoprediction import detect_and_predict_mask
 
-camera = cv2.VideoCapture(0)
+
 
 
 
@@ -23,10 +23,7 @@ maskNet = load_model("mask_detector.model")
 
 def gen_frames():  
     while True:
-        success, frame = camera.read()  # read the camera frame
-        if not success:
-            break
-        else:
+        
             
             (locs, preds) = detect_and_predict_mask(frame, faceNet, maskNet)
              #Draw the rectangle around each face
@@ -56,6 +53,6 @@ def gen_frames():
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-        cv2.destroyAllWindows()    
+        
 
             
