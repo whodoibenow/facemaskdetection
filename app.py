@@ -20,15 +20,14 @@ def mask_image():
     img = request.files['image']
     img.save('static/{}.jpg')
 
-	# load face detector model
-    print("Loading face detector model...")
+
     prototxtpath = os.path.sep.join(['face_detector', "deploy.prototxt"])
     weightspath = os.path.sep.join(['face_detector',
 		"res10_300x300_ssd_iter_140000.caffemodel"])
     net = cv2.dnn.readNet(prototxtpath, weightspath)
 
 	# load the face mask detector model
-    print("Loading face mask detector model...")
+ 
     model = load_model('mask_detection_model.h5')
 
 	# load the input image from disk, clone it, and grab the image spatial
@@ -42,8 +41,7 @@ def mask_image():
     blob = cv2.dnn.blobFromImage(image, 1.0, (300, 300),
 		(104.0, 177.0, 123.0))
 
-	# pass the blob through the network and obtain the face detections
-    print("Computing face detections...")
+
     net.setInput(blob)
     detections = net.forward()
 
