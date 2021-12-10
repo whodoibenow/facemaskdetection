@@ -28,7 +28,7 @@ def mask_image():
 
 	# load the face mask detector model
  
-    model = load_model('mask_detection_model.h5')
+    model = load_model('mask_detection.model')
 
 	# load the input image from disk, clone it, and grab the image spatial
 	# dimensions
